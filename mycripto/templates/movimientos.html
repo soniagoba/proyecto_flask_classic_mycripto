@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block titulo %}
+    Movimientos
+{% endblock %}
+{% block contenido %}
+<nav class="container"> 
+    <ul>
+        <li><a role="link" aria-disabled="true" class="contrast"> Inicio </a></li>
+        <li>/</li>
+        <li><a href="/purchase">Compra</a></li> 
+        <li>/</li>
+        <li><a href="/status">Status</a></li>
+    </ul>
+</nav> 
+<p class="title">MOVIMIENTOS</p> 
+{% if operaciones|length == 0 %}
+<p class="title2">NO SE ENCUENTRAN MOVIMIENTOS</p>
+{% endif %} 
+<div class="table_inicio">
+    <table role="grid">
+        <tr class="center">
+            <th style="width:13%">Fecha</th>
+            <th>Hora</th>
+            <th>Moneda origen</th>
+            <th style="width: 15%;">Cantidad origen</th>
+            <th>Moneda destino</th>
+            <th style="width: 15%;">Cantidad destino</th>
+            <th style="width: 23%">Precio Unitario</th>
+        </tr> 
+            {% for operacion in operaciones %}
+                <tr>
+                    <td>{{ operacion[0] }}</td>
+                    <td>{{ operacion[1] }}</td>
+                    <td style="width: 12%; text-align: center;">{{ operacion[2] }}</td>
+                    <td>{{ "%18.10f"|format(operacion[3]) }}</td>
+                    <td style="width: 12%; text-align: center;">{{ operacion[4] }}</td>
+                    <td>{{ "%18.10f"|format(operacion[5]) }}</td>
+                    <td class="right">{{ "%18.10f"|format(operacion[6]) }} {{ operacion[2] }} </td>
+                </tr> 
+            {% endfor %}
+    </table>
+</div>
+<br>
+<br>
+<div class="grid" actions_button>
+    <div class="center"><a href="/status" role="button" style="color: black;">Status</a></div>        
+    <div class="center"><a href="/purchase" role="button" style="color: black;">Añadir</a></div> 
+</div>
+{% endblock %}
+
+

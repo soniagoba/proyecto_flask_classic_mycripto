@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pico.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>MYCRIPTO | {% block titulo %} {% endblock %}</title>
+</head> 
+<body>
+    <header>
+        <div class="container" >myCRIPTO</div>
+    </header> 
+    <br>   
+    {% with mensajes = get_flashed_messages() %}
+        {% if mensajes %}
+        <section class="msg-error container">
+            <ul>
+                {% for mensaje in mensajes %}
+                    <li>{{ mensaje }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+    {% endwith %}
+
+    <section class="container">
+        {% block contenido %} {% endblock %}
+    </section>
+    <footer>
+        <div class="container">
+            &copy; 2022 - Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>

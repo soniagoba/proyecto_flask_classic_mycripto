@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    Estado de la Inversión
+{% endblock %}
+
+{% block contenido %}   
+<nav class="container">
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li>/</li>
+        <li><a href="/purchase">Compra</a></li>
+        <li>/</li>
+        <li><a role="link" aria-disabled="true" class="contrast"> Status</a></li>
+    </ul>
+</nav>
+<p class="title">ESTADO DE LA INVERSIÓN</p>
+    <div class="container">
+        <ul>
+            <li>INVERTIDO: {{ "%18.10f"|format(invertido_euros) }} € </li>
+            <li>VALOR ACTUAL: {{ "%18.10f"|format(valor_actual_total) }} € </li>
+            <li>VALOR CARTERA CRIPTOS: {{ "%18.10f"|format(valor_actual_criptos) }} €</li>
+            <li>RESULTADO NETO DE LA INVERSIÓN:
+                {% if (resultado_neto_inversion) > 0 %}
+                    Has perdido {{ "%18.10f"|format(resultado_neto_inversion) }} €.
+                {% elif (resultado_neto_inversion) == 0 %}
+                    Tu saldo actual es igual a tu inversion inicial.
+                {% else %}
+                    Has ganado {{ "%18.10f"|format(resultado_neto_inversion * -1) }} €.
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+<p class="title"> SALDO DE CRIPTOMONEDAS DISPONIBLES</p>
+<div class="table_status">
+    <table role="grid">
+        <tr class="center">
+            <th>Moneda</th>
+            <th>Saldo actual</th>
+        </tr>
+    {% for key in wallet %}
+        {% if (key != "EUR") and (wallet[key] != 0) %}
+        <tr>
+            <td>{{ key }}</td>
+            <td class="right">{{ "%17.10f"|format(wallet[key]) }}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+</div>
+<br>
+<div class="actions_button">
+    <a href="/" role="button" style="color: black; width: 150;"> Volver </a> 
+</div>
+{% endblock %}

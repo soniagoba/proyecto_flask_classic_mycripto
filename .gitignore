@@ -1,0 +1,6 @@
+.env
+**__pycache__/
+venv/
+.vscode/
+config.py
+PROYECTO TODOLIST.docx

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    Compra de criptos
+{% endblock %}
+
+{% block contenido %}
+<nav class="container"> 
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li>/</li>
+        <li><a role="link" aria-disabled="true" class="contrast"> Compra</a></li> 
+        <li>/</li>
+        <li><a href="/status">Status</a></li>
+    </ul> 
+</nav>
+<p class="title">COMPRA DE CRIPTOS</p>
+    <form action="/purchase" method="post">
+        {{ formulario.hidden_tag() }}        
+        <div class="grid">
+            {{ formulario.moneda_from.label() }}
+            {{ formulario.monedas_deshabilitadas() }}
+            {% if ((formulario.cantidad_to.data != None) or (formulario.monedas_deshabilitadas.data == "1")) %}          
+            {{ formulario.moneda_from(disabled=True) }}
+            {% else %}
+            {{ formulario.moneda_from(disabled=False) }}
+            {% endif %}
+            {{ formulario.moneda_from_oculta() }}          
+        </div>
+       
+        <div class="grid">
+            {{ formulario.cantidad_from.label() }}
+            {{ formulario.cantidad_from(placeholder="Importe a invertir")}}
+            {{ formulario.cantidad_from_oculta() }}
+        </div>
+        {% if formulario.cantidad_from.errors %}
+            {% for error in formulario.cantidad_from.errors%}
+                <p class="error-field">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <div class="grid">
+            {{ formulario.moneda_to.label() }}
+            {{ formulario.monedas_deshabilitadas() }}
+            {% if ((formulario.cantidad_to.data != None) or (formulario.monedas_deshabilitadas.data == "1")) %}
+            {{ formulario.moneda_to(disabled=True) }}
+            {% else %}
+            {{ formulario.moneda_to(disabled=False) }}
+            {% endif %}
+            {{ formulario.moneda_to_oculta() }}
+        </div>
+        {% if formulario.moneda_to.errors %}
+        {% for error in formulario.moneda_to.errors%}
+            <p class="error-field">{{ error }}</p>
+        {% endfor %}
+        {% endif %}
+
+        <div class="grid">
+            <h5 class="label-calcular">Calcular:</h5>
+            <button name="{{ formulario.calcular.name }}" id="{{ formulario.calcular.name }}" value="{{ formulario.calcular.label.text }}"><image src="{{url_for('static',filename = 'calculadora.png')}}"></image></button>
+            {{ formulario.estado_boton_calcular() }}
+        </div>
+        
+        <div class="grid">
+            {{ formulario.cantidad_to.label() }}
+            {% if formulario.cantidad_to.data == None %}
+                {{ "_________________________________________________________________" }}
+            {% else %}
+            {{ "%18.10f"|format(formulario.cantidad_to.data) }} {{ formulario.moneda_to_oculta.data}}
+            {% endif %}
+            {{ formulario.cantidad_to_oculta() }}
+        </div>
+        <br>
+        <div class="grid">
+            <div style="grid-column: 1 / 2;"> 
+                P.U.:
+            </div>
+            <div style="grid-column: 2 / 2;">
+            {% if precio_unitario_float %}
+                {{ "%18.10f"|format(precio_unitario_float) }} {{ formulario.moneda_from.data}}
+            {% elif precio_unitario_float != "" %}
+                {{ "_________________________________________________________________" }}
+            {% endif %}
+            </div>
+        </div>
+        <br>
+        <div class="grid" actions_button>
+            <div><a href="/purchase" role="button" style="color: black; width: 150px;">Cancelar</a></div>
+            <div style="width: 150px; height: 60px;">{{ formulario.aceptar() }}</div>           
+        </div>
+    </form>   
+{% endblock %}

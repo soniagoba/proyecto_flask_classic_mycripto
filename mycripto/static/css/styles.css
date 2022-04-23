@@ -1,0 +1,106 @@
+:root {
+--color-primario: #78c7e7;
+--color-secundario: #d6a9d1;
+--negro: #2c363f;
+--blanco: #fafafa;
+--separacion-defecto: 1px;
+--primary-hover: #08769b;
+}
+header, footer {
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    background-color: var(--color-primario);
+    color: var(--negro);
+}
+footer {
+    font-size: 18px;  
+}
+
+.table_inicio{
+    height: 500px;
+    overflow-y: scroll;
+    border: 1px solid black; 
+    border-collapse: collapse;
+
+}
+
+.table_status{
+    max-height: 350px;
+    width: 500px;
+    overflow-y: auto;
+    margin: 0px auto;
+    border: 1px solid black; 
+    border-collapse: collapse;
+}
+
+.title {
+    text-align: center;
+    font-size:25px;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--negro);
+}
+
+.title2 {
+    text-align: center;
+    font-size:25px;
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background-color: rgb(205, 199, 199);
+}
+.right {
+    text-align: right;
+    float: right;
+}
+
+.left {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.msg-error {
+    padding-top: 10px;
+    font-size: 0.9em;
+    background-color: var(--color-secundario)
+}
+
+.error-field {  
+    color: rgb(240, 8, 8);
+    font-size: 0.9em;
+    text-align: right;
+    text-decoration: underline;
+}
+
+/* Cancelar y aceptar?? */
+.actions_button {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+    color: var(--negro);
+    width: 150px;
+
+}
+
+.actions_button:hover {
+    background-color: var(--primary-hover);
+    width: 150px;
+}
+
+
+/* Me coge el calcular tambmién en cuanto al ancho*/
+button {
+    width: 100px; 
+ }
+
+ .label-calcular{
+     margin-top: 30px;
+ }
