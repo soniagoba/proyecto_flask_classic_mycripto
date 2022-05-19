@@ -1,4 +1,4 @@
-# Proyecto Flask classic - MYCRIPTO
+# Proyecto Flask classic para el Bootcamp Zero de KeepCoding - MYCRIPTO
 
 Aplicación web con flask para el registro de movimientos de compra-venta de criptomonedas. La aplicación consultará en www.coinapi.io el valor real en euros de las distintas criptomonedas para valorar si la inversión inicial ha crecido o no.
 
